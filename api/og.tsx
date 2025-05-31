@@ -1,23 +1,26 @@
 export const config = { runtime: "edge" };
 import { ImageResponse } from "@vercel/og";
 
-export default async function handler() {
+export default function handler(req: Request) {
+  const { searchParams } = new URL(req.url);
+  const text = searchParams.get("text") || "Hello!";
+
   return new ImageResponse(
     (
       <div
         style={{
-          fontSize: 40,
-          color: "black",
-          background: "white",
-          width: "100%",
-          height: "100%",
-          padding: "50px 200px",
-          textAlign: "center",
+          display: "flex",
           justifyContent: "center",
           alignItems: "center",
+          width: "100%",
+          height: "100%",
+          background: "#fff",
+          color: "#222",
+          fontSize: 64,
+          fontWeight: "bold",
         }}
       >
-        👋 Hello
+        {text}
       </div>
     ),
     {
