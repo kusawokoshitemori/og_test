@@ -10,21 +10,16 @@ export default function handler(req: Request) {
       <div
         style={{
           display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
           width: "100%",
           height: "100%",
           background: "#fff",
-          color: "#222",
-          fontSize: 64,
-          fontWeight: "bold",
         }}
       >
         {text}
       </div>
     ),
     {
-      width: 1200,
+      width: 1280,
       height: 630,
     }
   );
