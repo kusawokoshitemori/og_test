@@ -146,7 +146,6 @@ export default function handler(req: Request) {
                     style={{
                       width: 37.67,
                       height: 37.67,
-                      top: 1.57,
                       borderRadius: 32,
                       backgroundColor: "#FFF",
                       position: "absolute",
