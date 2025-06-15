@@ -154,6 +154,7 @@ export default function handler(req: Request) {
                       position: "absolute",
                       overflow: "hidden",
                       display: avatar ? "none" : "flex",
+                      border: "2px solid black",
                     }}
                   >
                     {/* ここでアイコン制作 */}
