@@ -111,6 +111,8 @@ export default function handler(req: Request) {
               display: "flex",
               flexDirection: "row",
               position: "absolute",
+              padding: 0,
+              margin: 0,
               border: "2px solid black",
             }}
           >
