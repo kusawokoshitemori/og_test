@@ -111,6 +111,7 @@ export default function handler(req: Request) {
               display: "flex",
               flexDirection: "row",
               position: "absolute",
+              border: "2px solid black",
             }}
           >
             {/* アイコン部分 */}
