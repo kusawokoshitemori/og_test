@@ -111,9 +111,6 @@ export default function handler(req: Request) {
               display: "flex",
               flexDirection: "row",
               position: "absolute",
-              padding: 0,
-              margin: 0,
-              border: "2px solid black",
             }}
           >
             {/* アイコン部分 */}
@@ -155,7 +152,6 @@ export default function handler(req: Request) {
                       position: "absolute",
                       overflow: "hidden",
                       display: avatar ? "none" : "flex",
-                      border: "2px solid black",
                     }}
                   >
                     {/* ここでアイコン制作 */}
