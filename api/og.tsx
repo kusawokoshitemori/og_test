@@ -65,7 +65,7 @@ export default function handler(req: Request) {
                 width: 912,
                 height: isTitleMultiLine ? 160 : 93,
                 fontFamily: "Noto Sans JP, sans-serif",
-                fontWeight: 1000,
+
                 fontSize: 64,
                 lineHeight: "100%",
                 letterSpacing: 0,
