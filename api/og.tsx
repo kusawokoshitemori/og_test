@@ -1,7 +1,6 @@
 import { ImageResponse } from "@vercel/og";
 
 export const config = { runtime: "edge" };
-// ぱ
 
 // api/ogからsrc/assetsの画像を使用
 const svgContent = `<svg width="535" height="105" viewBox="0 0 535 105" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -66,7 +65,7 @@ export default function handler(req: Request) {
                 width: 912,
                 height: isTitleMultiLine ? 160 : 93,
                 fontFamily: "Noto Sans JP, sans-serif",
-                fontWeight: 700,
+                fontWeight: 1000,
                 fontSize: 64,
                 lineHeight: "100%",
                 letterSpacing: 0,
