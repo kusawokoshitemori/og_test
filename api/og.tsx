@@ -62,6 +62,7 @@ export default function handler(req: Request) {
           >
             <div
               style={{
+                fontWeight: 700,
                 width: 912,
                 height: isTitleMultiLine ? 160 : 93,
                 fontFamily: "Noto Sans JP, sans-serif",
