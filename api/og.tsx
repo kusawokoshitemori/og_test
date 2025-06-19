@@ -47,7 +47,7 @@ export default async function handler(req: Request) {
   const { searchParams } = new URL(req.url);
 
   // Search Paramsで各要素を受け取る
-  const title = searchParams.get("title") || "title";
+  const title = searchParams.get("title") || "アスキーアート314";
   const description = searchParams.get("description") || "description";
   const author = searchParams.get("author") || "author";
   const avatar = searchParams.get("avatar") || "";
