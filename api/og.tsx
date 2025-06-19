@@ -291,16 +291,16 @@ export default async function handler(req: Request) {
       //     style: "normal",
       //   },
       // ],
-      fonts: [
-        {
-          name: "Noto Sans JP",
-          data: await fetch(
-            new URL("./NotoSans-Regular.ttf", import.meta.url)
-          ).then((res) => res.arrayBuffer()),
-          weight: 400,
-          style: "normal",
-        },
-      ],
+      // fonts: [
+      //   {
+      //     name: "Noto Sans JP",
+      //     data: await fetch(
+      //       new URL("./NotoSans-Regular.ttf", import.meta.url)
+      //     ).then((res) => res.arrayBuffer()),
+      //     weight: 400,
+      //     style: "normal",
+      //   },
+      // ],
     }
   );
 }
