@@ -32,6 +32,8 @@ export default function handler(req: Request) {
           background: "white",
           width: "100%",
           height: "100%",
+          fontFamily: "Inter, sans-serif",
+          fontWeight: 700,
           padding: "50px 200px",
           textAlign: "center",
           justifyContent: "center",
