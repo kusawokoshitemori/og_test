@@ -28,8 +28,8 @@ export default function handler(req: Request) {
       <div
         style={{
           background: "#fff",
-          width: "100%",
-          height: "100%",
+          // width: "100%",
+          // height: "100%",
           position: "relative",
           display: "flex",
           flexDirection: "column",
@@ -64,8 +64,8 @@ export default function handler(req: Request) {
               style={{
                 width: 912,
                 height: isTitleMultiLine ? 160 : 93,
-                // fontFamily: "Noto Sans JP, sans-serif",
-                // // fontWeight: 700,
+                fontFamily: "Noto Sans JP, sans-serif",
+                fontWeight: 700,
                 fontSize: 64,
                 lineHeight: "100%",
                 letterSpacing: 0,
