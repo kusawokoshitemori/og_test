@@ -2,25 +2,25 @@ import { ImageResponse } from "@vercel/og";
 
 export const config = { runtime: "edge" };
 
-// fontのインストール
-async function loadGoogleFont(font: string, text: string) {
-  const url = `https://fonts.googleapis.com/css2?family=${font}&text=${encodeURIComponent(
-    text
-  )}`;
-  const css = await (await fetch(url)).text();
-  const resource = css.match(
-    /src: url\((.+)\) format\('(opentype|truetype)'\)/
-  );
+// // fontのインストール
+// async function loadGoogleFont(font: string, text: string) {
+//   const url = `https://fonts.googleapis.com/css2?family=${font}&text=${encodeURIComponent(
+//     text
+//   )}`;
+//   const css = await (await fetch(url)).text();
+//   const resource = css.match(
+//     /src: url\((.+)\) format\('(opentype|truetype)'\)/
+//   );
 
-  if (resource) {
-    const response = await fetch(resource[1]);
-    if (response.status == 200) {
-      return await response.arrayBuffer();
-    }
-  }
+//   if (resource) {
+//     const response = await fetch(resource[1]);
+//     if (response.status == 200) {
+//       return await response.arrayBuffer();
+//     }
+//   }
 
-  throw new Error("failed to load font data");
-}
+//   throw new Error("failed to load font data");
+// }
 
 // api/ogからsrc/assetsの画像を使用
 const svgContent = `<svg width="535" height="105" viewBox="0 0 535 105" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -34,15 +34,44 @@ const svgContent = `<svg width="535" height="105" viewBox="0 0 535 105" fill="no
 </svg>`;
 const svgDataUrl = `data:image/svg+xml;utf8,${encodeURIComponent(svgContent)}`;
 
-export default function handler(req: Request) {
+// ある文字数以上あるかチェックする関数
+function checkMultiLine(title: string, maxLength: number): boolean {
+  // 全角は1、半角は0.5でカウント
+  const length = title.split("").reduce((len, char) => {
+    return len + (char.match(/[ -~]/) ? 0.5 : 1);
+  }, 0);
+  return length > maxLength;
+}
+
+export default async function handler(req: Request) {
   const { searchParams } = new URL(req.url);
+
+  // Search Paramsで各要素を受け取る
   const title = searchParams.get("title") || "title";
-  const displayDescription = searchParams.get("description") || "description";
-  const avatar = searchParams.get("avatar") || "";
+  const description = searchParams.get("description") || "description";
   const author = searchParams.get("author") || "author";
+  const avatar = searchParams.get("avatar") || "";
+  // const etc = searchParams.get('etc') || 'etc';
 
-  const isTitleMultiLine = false; // trueは二行、falseは一行の時のデザイン
+  /* タイトル,説明の行数をチェック */
+  const isTitleMultiLine = checkMultiLine(title, 14); // 1行分の文字数
+  const isDescriptionAtLeast3Lines = checkMultiLine(description, 50); // 2行分の文字数
 
+  // 三行以上の場合は...を最後に追加する
+  let displayDescription = description;
+  if (isDescriptionAtLeast3Lines) {
+    const twoLinesLength = 49; // 2行分の文字数-1
+    let len = 0;
+    displayDescription = "";
+    for (const char of description) {
+      len += char.match(/[ -~]/) ? 0.5 : 1;
+      if (len > twoLinesLength) break;
+      displayDescription += char;
+    }
+    displayDescription += "…";
+  }
+
+  // デザインの設計
   return new ImageResponse(
     (
       <div
@@ -255,6 +284,13 @@ export default function handler(req: Request) {
     {
       width: 1280,
       height: 630,
+      // fonts: [
+      //   {
+      //     name: "Geist",
+      //     data: await loadGoogleFont("Geist", title),
+      //     style: "normal",
+      //   },
+      // ],
     }
   );
 }
