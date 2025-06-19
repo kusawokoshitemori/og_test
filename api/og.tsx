@@ -46,6 +46,13 @@ function checkMultiLine(title: string, maxLength: number): boolean {
 export default async function handler(req: Request) {
   const { searchParams } = new URL(req.url);
 
+  // font1を取得する
+  const font1 = await fetch(new URL("/public/Inter-Bold.ttf", import.meta.url));
+  if (!font1.ok) {
+    throw new Error("Failed to fetch the font file");
+  }
+  const fontData1 = await font1.arrayBuffer();
+
   // Search Paramsで各要素を受け取る
   const title = searchParams.get("title") || "title";
   const description = searchParams.get("description") || "description";
@@ -284,6 +291,18 @@ export default async function handler(req: Request) {
     {
       width: 1280,
       height: 630,
+      fonts: [
+        {
+          name: "Inter",
+          data: fontData1,
+          style: "normal",
+        },
+        // {
+        //   name: "Regular",
+        //   data: fontData2,
+        //   style: "normal",
+        // },
+      ],
       // fonts: [
       //   {
       //     name: "Geist",
