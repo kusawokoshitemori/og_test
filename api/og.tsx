@@ -113,7 +113,8 @@ export default async function handler(req: Request) {
               style={{
                 width: 912,
                 height: isTitleMultiLine ? 160 : 93,
-                fontFamily: "Noto Sans JP, sans-serif",
+                // fontFamily: "Noto Sans JP, sans-serif",
+                fontFamily: "Geist",
                 fontWeight: 700,
                 fontSize: 64,
                 lineHeight: "100%",
