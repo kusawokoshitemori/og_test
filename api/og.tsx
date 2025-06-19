@@ -1,6 +1,7 @@
 import { ImageResponse } from "@vercel/og";
 
 export const config = { runtime: "edge" };
+// ぱ
 
 // api/ogからsrc/assetsの画像を使用
 const svgContent = `<svg width="535" height="105" viewBox="0 0 535 105" fill="none" xmlns="http://www.w3.org/2000/svg">
