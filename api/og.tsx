@@ -44,6 +44,11 @@ function checkMultiLine(title: string, maxLength: number): boolean {
 }
 
 export default async function handler(req: Request) {
+  // fontスタイルの読み取り
+  const fontData = await fetch(
+    new URL("../public/fonts/Inter-VariableFont_opsz,wght.ttf", import.meta.url)
+  ).then((res) => res.arrayBuffer());
+
   const { searchParams } = new URL(req.url);
 
   // Search Paramsで各要素を受け取る
@@ -236,7 +241,8 @@ export default async function handler(req: Request) {
                 height: 40.8,
                 left: 53.67,
                 color: "#000",
-                fontFamily: "Inter, sans-serif",
+                // fontFamily: "Inter, sans-serif",
+                fontFamily: '"Inter"',
                 fontWeight: 600,
                 fontSize: 24,
                 lineHeight: "46px",
@@ -284,13 +290,16 @@ export default async function handler(req: Request) {
     {
       width: 1280,
       height: 630,
-      // fonts: [
-      //   {
-      //     name: "Geist",
-      //     data: await loadGoogleFont("Geist", title),
-      //     style: "normal",
-      //   },
-      // ],
+      fonts: [
+        {
+          name: "Inter",
+          data: fontData, // 読み込んだフォントデータを指定
+          style: "normal", // スタイルは 'normal'
+          // バリアブルフォントなので、JSX側で様々なfontWeightを指定可能
+          weight: 400,
+        },
+        // イタリック用のオブジェクトは不要
+      ],
     }
   );
 }
