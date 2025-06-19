@@ -62,11 +62,10 @@ export default function handler(req: Request) {
           >
             <div
               style={{
-                fontWeight: 700,
                 width: 912,
                 height: isTitleMultiLine ? 160 : 93,
-                fontFamily: "Noto Sans JP, sans-serif",
-
+                // fontFamily: "Noto Sans JP, sans-serif",
+                // // fontWeight: 700,
                 fontSize: 64,
                 lineHeight: "100%",
                 letterSpacing: 0,
@@ -84,8 +83,8 @@ export default function handler(req: Request) {
               style={{
                 width: 912,
                 height: 88,
-                fontFamily: "Noto Sans JP, sans-serif",
-                fontWeight: 400,
+                // fontFamily: "Noto Sans JP, sans-serif",
+                // fontWeight: 400,
                 fontSize: 36,
                 lineHeight: "46px",
                 letterSpacing: 0,
@@ -188,8 +187,8 @@ export default function handler(req: Request) {
                 height: 40.8,
                 left: 53.67,
                 color: "#000",
-                fontFamily: "Inter, sans-serif",
-                fontWeight: 600,
+                // fontFamily: "Inter, sans-serif",
+                // fontWeight: 600,
                 fontSize: 24,
                 lineHeight: "46px",
                 letterSpacing: "-2%",
@@ -205,8 +204,8 @@ export default function handler(req: Request) {
                 height: 40.8,
                 left: 186.67,
                 color: "#000",
-                fontFamily: "Inter, sans-serif",
-                fontWeight: 600,
+                // fontFamily: "Inter, sans-serif",
+                // fontWeight: 600,
                 fontSize: 24,
                 lineHeight: "46px",
                 letterSpacing: "-2%",
