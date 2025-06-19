@@ -2,25 +2,25 @@ import { ImageResponse } from "@vercel/og";
 
 export const config = { runtime: "edge" };
 
-// // fontのインストール
-// async function loadGoogleFont(font: string, text: string) {
-//   const url = `https://fonts.googleapis.com/css2?family=${font}&text=${encodeURIComponent(
-//     text
-//   )}`;
-//   const css = await (await fetch(url)).text();
-//   const resource = css.match(
-//     /src: url\((.+)\) format\('(opentype|truetype)'\)/
-//   );
+// fontのインストール
+async function loadGoogleFont(font: string, text: string) {
+  const url = `https://fonts.googleapis.com/css2?family=${font}&text=${encodeURIComponent(
+    text
+  )}`;
+  const css = await (await fetch(url)).text();
+  const resource = css.match(
+    /src: url\((.+)\) format\('(opentype|truetype)'\)/
+  );
 
-//   if (resource) {
-//     const response = await fetch(resource[1]);
-//     if (response.status == 200) {
-//       return await response.arrayBuffer();
-//     }
-//   }
+  if (resource) {
+    const response = await fetch(resource[1]);
+    if (response.status == 200) {
+      return await response.arrayBuffer();
+    }
+  }
 
-//   throw new Error("failed to load font data");
-// }
+  throw new Error("failed to load font data");
+}
 
 // api/ogからsrc/assetsの画像を使用
 const svgContent = `<svg width="535" height="105" viewBox="0 0 535 105" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -284,13 +284,13 @@ export default async function handler(req: Request) {
     {
       width: 1280,
       height: 630,
-      // fonts: [
-      //   {
-      //     name: "Geist",
-      //     data: await loadGoogleFont("Geist", title),
-      //     style: "normal",
-      //   },
-      // ],
+      fonts: [
+        {
+          name: "Geist",
+          data: await loadGoogleFont("Geist", title),
+          style: "normal",
+        },
+      ],
     }
   );
 }
