@@ -112,7 +112,7 @@ export default async function handler(req: Request) {
               style={{
                 width: 912,
                 height: isTitleMultiLine ? 160 : 93,
-                fontFamily: "Noto Sans JP, sans-serif",
+                fontFamily: "Roboto Noto Sans JP, sans-serif",
                 fontWeight: 700,
                 fontSize: 64,
                 lineHeight: "100%",
@@ -286,8 +286,8 @@ export default async function handler(req: Request) {
       height: 630,
       fonts: [
         {
-          name: "Geist",
-          data: await loadGoogleFont("Geist", title),
+          name: "Roboto",
+          data: await loadGoogleFont("Roboto:wght@700", title),
           style: "normal",
         },
       ],
