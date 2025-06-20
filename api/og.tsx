@@ -48,6 +48,7 @@ export default async function handler(req: Request) {
   // Search Paramsで各要素を受け取る
   const title = searchParams.get("title") || "title";
   const description = searchParams.get("description") || "description";
+  const createBy = "Created By";
   const author = searchParams.get("author") || "author";
   const avatar = searchParams.get("avatar") || "";
   // const etc = searchParams.get('etc') || 'etc';
@@ -245,7 +246,7 @@ export default async function handler(req: Request) {
                 alignItems: "center",
               }}
             >
-              Created By
+              {createBy}
             </div>
             <div
               style={{
@@ -286,12 +287,22 @@ export default async function handler(req: Request) {
       fonts: [
         {
           name: "Noto Sans JP",
-          data: await loadGoogleFont("Noto+Sans+JP:wght@400;700", title),
+          data: await loadGoogleFont("Noto+Sans+JP:wght@700", title),
+          style: "normal",
+        },
+        {
+          name: "Noto Sans JP",
+          data: await loadGoogleFont("Noto+Sans+JP:wght@400", description),
           style: "normal",
         },
         {
           name: "Inter",
-          data: await loadGoogleFont("Inter:wght@600", title),
+          data: await loadGoogleFont("Inter:wght@600", createBy),
+          style: "normal",
+        },
+        {
+          name: "Inter",
+          data: await loadGoogleFont("Inter:wght@600", author),
           style: "normal",
         },
       ],
