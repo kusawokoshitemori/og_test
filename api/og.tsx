@@ -252,7 +252,7 @@ export default async function handler(req: Request) {
                 height: 40.8,
                 left: 186.67,
                 color: "#000",
-                fontFamily: "Inter, sans-serif",
+                fontFamily: "Inter",
                 fontWeight: 600,
                 fontSize: 24,
                 lineHeight: "46px",
