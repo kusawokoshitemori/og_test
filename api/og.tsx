@@ -2,26 +2,6 @@ import { ImageResponse } from "@vercel/og";
 
 export const config = { runtime: "edge" };
 
-// // fontのインストール
-// async function loadGoogleFont(font: string, text: string) {
-//   const url = `https://fonts.googleapis.com/css2?family=${font}&text=${encodeURIComponent(
-//     text
-//   )}`;
-//   const css = await (await fetch(url)).text();
-//   const resource = css.match(
-//     /src: url\((.+)\) format\('(opentype|truetype)'\)/
-//   );
-
-//   if (resource) {
-//     const response = await fetch(resource[1]);
-//     if (response.status == 200) {
-//       return await response.arrayBuffer();
-//     }
-//   }
-
-//   throw new Error("failed to load font data");
-// }
-
 // api/ogからsrc/assetsの画像を使用
 const svgContent = `<svg width="535" height="105" viewBox="0 0 535 105" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M81.536 8.39999C81.9627 8.39999 82.432 8.35733 82.944 8.272C83.5413 8.10133 84.1387 7.71733 84.736 7.12C85.0773 6.77866 85.4613 6.60799 85.888 6.60799C86.5707 6.60799 87.0827 6.99199 87.424 7.75999L97.536 26.448C97.792 26.96 97.92 27.344 97.92 27.6C97.92 28.2827 97.5787 28.7947 96.896 29.136L91.52 32.08C91.008 32.336 90.5813 32.464 90.24 32.464C89.728 32.464 89.2587 32.08 88.832 31.312L88.448 30.544C86.3147 26.2773 83.2427 23.248 79.232 21.456C75.2213 19.664 70.6133 18.768 65.408 18.768H59.136V84.56C59.136 87.9733 59.776 90.8747 61.056 93.264C62.336 95.568 64.5973 96.72 67.84 96.72H68.736C70.016 96.72 70.656 97.36 70.656 98.64V102.48C70.656 103.76 70.016 104.4 68.736 104.4H29.312C28.032 104.4 27.392 103.76 27.392 102.48V98.64C27.392 97.36 28.032 96.72 29.312 96.72H30.08C33.3227 96.72 35.584 95.568 36.864 93.264C38.144 90.8747 38.784 87.9733 38.784 84.56V18.768H32.512C27.3067 18.768 22.6987 19.664 18.688 21.456C14.6773 23.248 11.6053 26.2773 9.472 30.544L9.088 31.312C8.66133 32.08 8.192 32.464 7.68 32.464C7.33867 32.464 6.912 32.336 6.4 32.08L1.024 29.136C0.341333 28.7947 0 28.2827 0 27.6C0 27.344 0.128 26.96 0.384 26.448L10.496 7.75999C10.9227 6.99199 11.4347 6.60799 12.032 6.60799C12.4587 6.60799 12.8427 6.77866 13.184 7.12C13.7813 7.71733 14.336 8.10133 14.848 8.272C15.4453 8.35733 15.9573 8.39999 16.384 8.39999H81.536Z" fill="#232323"/>
@@ -43,12 +23,26 @@ function checkMultiLine(title: string, maxLength: number): boolean {
   return length > maxLength;
 }
 
-export default async function handler(req: Request) {
-  // fontスタイルの読み取り
-  const fontData = await fetch(
-    new URL("../public/fonts/Inter-VariableFont_opsz,wght.ttf", import.meta.url)
-  ).then((res) => res.arrayBuffer());
+async function loadGoogleFont(font: string, text: string) {
+  const url = `https://fonts.googleapis.com/css2?family=${font}&text=${encodeURIComponent(
+    text
+  )}`;
+  const css = await (await fetch(url)).text();
+  const resource = css.match(
+    /src: url\((.+)\) format\('(opentype|truetype)'\)/
+  );
 
+  if (resource) {
+    const response = await fetch(resource[1]);
+    if (response.status == 200) {
+      return await response.arrayBuffer();
+    }
+  }
+
+  throw new Error("failed to load font data");
+}
+
+export default async function handler(req: Request) {
   const { searchParams } = new URL(req.url);
 
   // Search Paramsで各要素を受け取る
@@ -292,13 +286,10 @@ export default async function handler(req: Request) {
       height: 630,
       fonts: [
         {
-          name: "Inter",
-          data: fontData, // 読み込んだフォントデータを指定
-          style: "normal", // スタイルは 'normal'
-          // バリアブルフォントなので、JSX側で様々なfontWeightを指定可能
-          weight: 400,
+          name: "Geist",
+          data: await loadGoogleFont("Geist", title),
+          style: "normal",
         },
-        // イタリック用のオブジェクトは不要
       ],
     }
   );
