@@ -112,7 +112,7 @@ export default async function handler(req: Request) {
               style={{
                 width: 912,
                 height: isTitleMultiLine ? 160 : 93,
-                fontFamily: "Roboto Noto Sans JP, sans-serif",
+                fontFamily: "Noto Sans JP, sans-serif",
                 fontWeight: 700,
                 fontSize: 64,
                 lineHeight: "100%",
@@ -235,8 +235,7 @@ export default async function handler(req: Request) {
                 height: 40.8,
                 left: 53.67,
                 color: "#000",
-                // fontFamily: "Inter, sans-serif",
-                fontFamily: '"Inter"',
+                fontFamily: "Inter, sans-serif",
                 fontWeight: 600,
                 fontSize: 24,
                 lineHeight: "46px",
@@ -286,8 +285,13 @@ export default async function handler(req: Request) {
       height: 630,
       fonts: [
         {
-          name: "Roboto",
-          data: await loadGoogleFont("Roboto:wght@700", title),
+          name: "Noto Sans JP",
+          data: await loadGoogleFont("Noto+Sans+JP:wght@400;700", title),
+          style: "normal",
+        },
+        {
+          name: "Inter",
+          data: await loadGoogleFont("Inter:wght@600", title),
           style: "normal",
         },
       ],
