@@ -48,7 +48,6 @@ export default async function handler(req: Request) {
   // Search Paramsで各要素を受け取る
   const title = searchParams.get("title") || "title";
   const description = searchParams.get("description") || "description";
-  const createBy = "Created By";
   const author = searchParams.get("author") || "author";
   const avatar = searchParams.get("avatar") || "";
   // const etc = searchParams.get('etc') || 'etc';
@@ -236,7 +235,8 @@ export default async function handler(req: Request) {
                 height: 40.8,
                 left: 53.67,
                 color: "#000",
-                fontFamily: "Inter, sans-serif",
+                // fontFamily: "Inter, sans-serif",
+                fontFamily: '"Inter"',
                 fontWeight: 600,
                 fontSize: 24,
                 lineHeight: "46px",
@@ -246,14 +246,14 @@ export default async function handler(req: Request) {
                 alignItems: "center",
               }}
             >
-              {createBy}
+              Created By
             </div>
             <div
               style={{
                 height: 40.8,
                 left: 186.67,
                 color: "#000",
-                fontFamily: "Inter",
+                fontFamily: "Inter, sans-serif",
                 fontWeight: 600,
                 fontSize: 24,
                 lineHeight: "46px",
@@ -286,23 +286,8 @@ export default async function handler(req: Request) {
       height: 630,
       fonts: [
         {
-          name: "Noto Sans JP",
-          data: await loadGoogleFont("Noto+Sans+JP:wght@700", title),
-          style: "normal",
-        },
-        {
-          name: "Noto Sans JP",
-          data: await loadGoogleFont("Noto+Sans+JP:wght@400", description),
-          style: "normal",
-        },
-        {
-          name: "Inter",
-          data: await loadGoogleFont("Inter:wght@600", createBy),
-          style: "normal",
-        },
-        {
-          name: "Inter",
-          data: await loadGoogleFont("Inter:wght@600", author),
+          name: "Geist",
+          data: await loadGoogleFont("Geist", title),
           style: "normal",
         },
       ],
